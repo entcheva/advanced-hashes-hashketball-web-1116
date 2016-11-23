@@ -182,16 +182,14 @@ def team_names
 end
 
 
-
 def player_numbers(team_name2)
   numbers = []
   game_hash.each do |location, team_data| # home or away & corresponding data
     team_data.each do |attribute, data|  # team name / colors / players & corresponding data
-      if attribute.to_s == "players"
-        attribute.to_s.each do |players_data, stats|
-          if players_data = [:number]
-            numbers.push(stats)
-          end
+      if data.to_s == team_name2
+
+        team_data[:players].each do |players_data, stats|
+          numbers.push(stats[:number])
         end
       end
     end
@@ -206,13 +204,41 @@ end
 
 
 
+def player_stats(name)
+  statsss = {}
+
+  game_hash.each do |location, team_data| # home or away & corresponding data
+    team_data.each do |attribute, data|  # team name / colors / players & corresponding data
+      if attribute == :players
+        data.each do |names, data_item| # player names & corresponding stats
+          if names.to_s == name
+            statsss = data_item
+          end
+        end
+      end
+    end
+  end
+  statsss
+end
 
 
 
-#
-# def player_stats
-# end
-#
-#
-# def big_shoe_rebounds
-# end
+
+def big_shoe_rebounds
+
+# biggest shoe size
+  big = 0
+  rebound = 0
+
+  game_hash.each do |location, team_data| # home or away & corresponding data
+    team_data.each do |attribute, data|  # team name / colors / players & corresponding data
+      team_data[:players].each do |name, stats|
+        if stats[:shoe] > big
+          big = stats[:shoe]
+          rebound = stats[:rebounds]
+        end
+      end
+    end
+  end
+  rebound
+end
