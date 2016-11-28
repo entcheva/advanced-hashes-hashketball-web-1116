@@ -242,3 +242,31 @@ def big_shoe_rebounds
   end
   rebound
 end
+
+
+# winning team
+
+def winning_team
+
+  points_home = 0
+  points_away = 0
+
+  game_hash.each do |location, hash|
+    hash.each do |key, value|
+      hash[:players].each do |name, stats|
+        puts stats[:points]
+        if location == :home
+          points_home += stats[:points]
+        elsif location == :away
+          points_away += stats[:points]
+        end
+    end
+  end
+end
+
+  if points_home > points_away
+    return game_hash[:home][:team_name]
+  else return game_hash[:away][:team_name]
+  end
+
+end
