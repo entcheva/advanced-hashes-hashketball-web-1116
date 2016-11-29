@@ -10,7 +10,7 @@ def game_hash
       'Jason Terry' => {number:31, shoe:15, points:19, rebounds:2, assists:2, steals:4, blocks:11, slam_dunks:1}
       }},
     away: {team_name: "Charlotte Hornets", colors: ['Turquoise', 'Purple'], players: {
-      'Jeff Adrien' => {number:4, shoe:18, points:10, rebounds:1, assists:1, steals:2, blocks:7, slam_dunks:2},
+      'Jeff Adrien' => {number:4, shoe:18, points:10, rebounds:1, assists:1, cd labs/s:2, blocks:7, slam_dunks:2},
       'Bismak Biyombo' => {number:0, shoe:16, points:12, rebounds:4, assists:7, steals:7, blocks:15, slam_dunks:10},
       'DeSagna Diop' => {number:2, shoe:14, points:24, rebounds:12, assists:12, steals:4, blocks:5, slam_dunks:5},
       'Ben Gordon' => {number:8, shoe:15, points:33, rebounds:3, assists:2, steals:1, blocks:1, slam_dunks:0},
@@ -94,15 +94,8 @@ def player_numbers(team_name2)
 end
 
 
-
-
-
-
-
-
 def player_stats(name)
   statsss = {}
-
   game_hash.each do |location, team_data| # home or away & corresponding data
     team_data.each do |attribute, data|  # team name / colors / players & corresponding data
       if attribute == :players
@@ -118,11 +111,7 @@ def player_stats(name)
 end
 
 
-
-
 def big_shoe_rebounds
-
-# biggest shoe size
   big = 0
   rebound = 0
 
@@ -140,10 +129,7 @@ def big_shoe_rebounds
 end
 
 
-# winning team
-
 def winning_team
-
   points_home = 0
   points_away = 0
 
@@ -155,9 +141,9 @@ def winning_team
         elsif location == :away
           points_away += stats[:points]
         end
+      end
     end
   end
-end
 
   if points_home > points_away
     return game_hash[:home][:team_name]
